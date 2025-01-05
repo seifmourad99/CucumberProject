@@ -11,8 +11,8 @@ public class CartPage {
     }
 
     //locators
-    private By laptop1tittle = By.xpath("//*[@id=\"tbodyid\"]/tr[1]/td[2]");
-    private By laptop1price =By.xpath("//*[@id=\"tbodyid\"]/tr[1]/td[3]");
+    private By laptop1tittle = By.xpath("//td[contains(text(),'i5')]");
+    private By laptop1price =By.xpath("//td[contains(text(),'i7')]");
     private By laptop2tittle=By.xpath("//*[@id=\"tbodyid\"]/tr[2]/td[2]");
     private By laptop2price =By.xpath("//*[@id=\"tbodyid\"]/tr[2]/td[3]");
     private By tottalprice=By.cssSelector("#totalp");
