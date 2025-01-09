@@ -1,8 +1,7 @@
 package steps;
 
-import Pages.*;
-import Pages.HomePage;
-import io.cucumber.datatable.DataTable;
+import pages.*;
+import pages.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,7 +17,7 @@ public class Scenario1_Steps {
     @Given("user opens the website and press on signup link")
     public void user_opens_the_website_and_press_on_signup_link() throws InterruptedException {
         homePage = new HomePage(driver);
-        homePage.clickonsignuplink();
+        homePage.clickOnSignupLink();
         Thread.sleep(2000);
     }
     @When("user enters valid username  and password as  and click signup")
@@ -26,12 +25,12 @@ public class Scenario1_Steps {
         signupPage =new SignupPage(driver);
         signupPage.insertUsername("seif131");
         signupPage.insertPassword("12341234");
-        signupPage.clickSignupButton();
+        signupPage.clickSignUpButton();
         Thread.sleep(2000);
     }
     @Then("user gets signup message alert")
     public void user_gets_signup_message_alert() {
-        String actualresult = signupPage.getsinupalertmessagetext();
+        String actualresult = signupPage.getSinupAlertMessageText();
         String expectedresult = "Sign up successful";
         Assert.assertTrue(actualresult.contains(expectedresult));
     }

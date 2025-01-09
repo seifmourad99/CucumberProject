@@ -1,5 +1,5 @@
 package steps;
-import Pages.*;
+import pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 public class Scenario2_Steps {
     WebDriver driver = Hooks.getDriver();
     HomePage homePage;
-    SignupPage signupPage;
+
     CartPage cartPage;
     LaptopsfieldPage laptopsfieldPage;
     Laptop1page laptop1page;
@@ -20,7 +20,7 @@ public class Scenario2_Steps {
     @Given("User opens the website and press on login link")
     public void user_opens_the_website_and_press_on_login_link() throws InterruptedException {
         homePage = new HomePage(driver);
-        homePage.clickonloginlink();
+        homePage.clickonLoginLink();
         Thread.sleep(2000);
     }
 
@@ -30,13 +30,13 @@ public class Scenario2_Steps {
         loginPage = new LoginPage(driver);
         loginPage.insertUsernamee("seif131");
         loginPage.insertPasswordd("12341234");
-        loginPage.clickloginButton();
+        loginPage.clickLoginButton();
         Thread.sleep(2000);
     }
 
     @Then("Welcome message displayed welcome username")
     public void WelcomeMessageDisplayedWelcomeUsername() throws InterruptedException {
-        String actualresult = loginPage.getwelcomeusertext();
+        String actualresult = loginPage.getWelcomeUserText();
         String expectedresult = "Welcome seif131";
         Assert.assertTrue(actualresult.contains(expectedresult));
         Thread.sleep(1000);
@@ -45,7 +45,7 @@ public class Scenario2_Steps {
     @And("User opens the website and press on Laptop page link")
     public void userOpensTheWebsiteAndPressOnLaptopPageLink() throws InterruptedException {
         homePage = new HomePage(driver);
-        homePage.clickonlaptopsfieldlink();
+        homePage.clickOnLaptopsFieldLink();
         Thread.sleep(2000);
 
     }
@@ -53,34 +53,34 @@ public class Scenario2_Steps {
     @And("User press on laptop one page and add laptop one to cart then message alert is displayed that product is added to cart then press home btn")
     public void userPressOnLaptopOnePageAndAddLaptopOneToCartThenMessageAlertIsDisplayedThatProductIsAddedToCart() throws InterruptedException {
         laptopsfieldPage = new LaptopsfieldPage(driver);
-        laptopsfieldPage.clickonproduct1page();
+        laptopsfieldPage.clickOnProduct1Page();
         Thread.sleep(2000);
         laptop1page = new Laptop1page(driver);
-        laptop1page.clickonaddtocartbutton();
+        laptop1page.clickOnAddToCartButton();
         Thread.sleep(2000);
-        String actualresult2 = laptop1page.getaddproducttext();
+        String actualresult2 = laptop1page.getAddProductText();
         String expectedresult2 = "Product added";
         Thread.sleep(1000);
         Assert.assertTrue(actualresult2.contains(expectedresult2));
-        laptop1page.accept1alert();
-        laptop1page.clickonhomebtn();
+        laptop1page.accept1Alert();
+        laptop1page.clickOnHomeBtn();
         Thread.sleep(3000);
     }
     @And("User click on laptops page then press on laptop two page and add to cart and display message is displayed that product is added to cart")
     public void userClickOnLaptopsPageThenPressOnLaptopTwoPageAndAddToCartAndDisplayMessageIsDisplayedThatProductIsAddedToCart() throws InterruptedException {
         homePage=new HomePage(driver);
         Thread.sleep(1000);
-        homePage.clickonlaptopsfieldlink();
+        homePage.clickOnLaptopsFieldLink();
         Thread.sleep(2000);
-        laptopsfieldPage.clickonproduct2page();
+        laptopsfieldPage.clickOnProduct2Page();
         Thread.sleep(1000);
         laptop2page = new Laptop2page(driver);
-        laptop2page.clickonaddtocartbutton();
+        laptop2page.clickOnAddToCartButton2();
         Thread.sleep(2000);
-        String actualresult3 = laptop2page.getaddproducttext();
+        String actualresult3 = laptop2page.getAddProductText();
         String expectedresult3 = "Product added";
         Assert.assertTrue(actualresult3.contains(expectedresult3));
-        laptop2page.accept2alert();
+        laptop2page.accept2Alert();
     }
 
 
@@ -88,30 +88,30 @@ public class Scenario2_Steps {
     @And("User press cart button and check that the price,tittle And total price  of laptops have accurate details")
     public void userPressCartButtonAndCheckThatThePriceTittleAndTotalPriceOfLaptopsHaveAccurateDetails() throws InterruptedException {
 
-        homePage.clickoncartlink();
+        homePage.clickOnCartLink();
         Thread.sleep(2000);
         cartPage = new CartPage(driver);
-        String actualresult4 = cartPage.getlaptop1title();
+        String actualresult4 = cartPage.getLaptop1Title();
         String expectedresult4 = "Sony vaio i5";
         Thread.sleep(1500);
         Assert.assertTrue(actualresult4.contains(expectedresult4));
 
-        String actualresult5 = cartPage.getlaptop1price();
+        String actualresult5 = cartPage.getLaptop1Price();
         Integer expectedresult5 = 790;
         Thread.sleep(1500);
         Assert.assertTrue(actualresult5.contains(expectedresult5.toString()));
 
-        String actualresult6 = cartPage.getlaptop2tittle();
+        String actualresult6 = cartPage.getLaptop2Tittle();
         String expectedresult6 = "Sony vaio i7";
         Thread.sleep(1500);
         Assert.assertTrue(actualresult6.contains(expectedresult6));
 
-        String actualresult7 = cartPage.getlaptop2price();
+        String actualresult7 = cartPage.getLaptop2Price();
         Integer expectedresult7 = 790;
         Thread.sleep(1500);
         Assert.assertTrue(actualresult7.contains(expectedresult7.toString()));
 
-        String actualresult8 = cartPage.gettottalprice();
+        String actualresult8 = cartPage.getTotalPrice();
         Integer expectedresult8 = expectedresult5+expectedresult7;
         Thread.sleep(2000);
         Assert.assertTrue(actualresult8.contains(expectedresult8.toString()));
@@ -121,19 +121,19 @@ public class Scenario2_Steps {
     @And("User press on place order button and fill all field with valid inputs then click on purchase button and display message should be displayed")
     public void userPressOnPlaceOrderButtonAndFillAllFieldWithValidInputsThenClickOnPurchaseButtonAndDisplayMessageShouldBeDisplayed() throws InterruptedException {
         // cartPage=new CartPage(driver);
-        cartPage.clickonplaceorderbtn();
+        cartPage.clickOnPlaceOrderbtn();
         Thread.sleep(2000);
         placeorderPage = new PlaceorderPage(driver);
-        placeorderPage.insertPurchasenamefield("seif");
-        placeorderPage.insertPurchasecountryfield("Egypt");
-        placeorderPage.insertPurchasecityfield("Cairo");
-        placeorderPage.insertPurchasecreditcardfield("124151242312");
-        placeorderPage.insertPurchasemonthfield("11");
-        placeorderPage.insertPurchaseyearfield("2022");
+        placeorderPage.insertPurchaseNameField("seif");
+        placeorderPage.insertPurchaseCountryField("Egypt");
+        placeorderPage.insertPurchaseCityField("Cairo");
+        placeorderPage.insertPurchaseCreditCardField("124151242312");
+        placeorderPage.insertPurchaseMonthField("11");
+        placeorderPage.insertPurchaseYearField("2022");
         Thread.sleep(2000);
-        placeorderPage.clickonPurchasebutoon();
+        placeorderPage.purchaseButton();
         Thread.sleep(2000);
-        String actualResult = placeorderPage.getsuccessmessagetext();
+        String actualResult = placeorderPage.getSuccessMessageText();
         String expectedResult = "Thank you for your purchase!";
         Assert.assertTrue(actualResult.contains(expectedResult));
     }
